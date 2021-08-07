@@ -8,11 +8,12 @@ namespace SquaredRandoms
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("////////////Squaring Random Numbers////////////");
             Random random = new Random();
             //int randomNumber = random.Next(0, 50);                                                                                                                    
             List<int> randomNumberList = new List<int>();
 
-                for (int i = 0; i <= 20; i++)
+            for (int i = 0; i <= 20; i++)
             {
                 int randomNumber = random.Next(0, 50);
                 randomNumberList.Add(randomNumber);
@@ -41,7 +42,7 @@ namespace SquaredRandoms
 
             foreach (var rmvOddNum in removeOddsFromList)
             {
-                
+
                 Console.Write(rmvOddNum.ToString($"{rmvOddNum} "));
             }
             Console.WriteLine();
@@ -63,25 +64,14 @@ namespace SquaredRandoms
 
             planetList.Remove("Pluto");
 
-            //foreach (var planet in planetList)
-            //{
-            //    Console.WriteLine(planet);
-            //}
-            
-            foreach (var rockyPlanet in rockyPlanets)
-            {
-                Console.WriteLine(rockyPlanet);
-            }
-
-            //********* try coming back and using .ToDictionary() -- with lists already made?
             //var spacecraftDict = rockyPlanets.ToDictionary(rockyPlanets => rockyPlanets);
             var spacecraft2 = new Dictionary<string, List<string>>();
 
 
             spacecraft2.Add("Mercury", new List<string> { "Viking", "Opportunity" });
-            //spacecraftDict.Add("Venus", new List<string> { "Viking", "Opportunity" });
-            //spacecraftDict.Add("Earth", new List<string> { "Viking", "Opportunity" });
-            //spacecraftDict.Add("Mars", new List<string> { "Viking", "Opportunity" });
+            spacecraft2.Add("Venus", new List<string> { "Viking", "Opportunity" });
+            spacecraft2.Add("Earth", new List<string> { "Viking", "Opportunity" });
+            spacecraft2.Add("Mars", new List<string> { "Viking", "Opportunity" });
 
 
             //spacecraftDict.Add("Mercury", "Viking");
@@ -99,8 +89,47 @@ namespace SquaredRandoms
                 Console.WriteLine($"{planet}: {String.Join(", ", spaceship)} ");
             }
 
+            Console.WriteLine();
+            Console.WriteLine("///////////////Family//////////////");
+
+            //////////////////FAMILY DICTIONARY////////////////
+
+            //below is the longer version instead of var
+            //Dictionary<string, Dictionary<string, string>> myFamily2 = new Dictionary<string, Dictionary<string, string>>();
+            var myFamily = new Dictionary<string, Dictionary<string, string>>();
+
+            myFamily.Add("wife", new Dictionary<string, string>() { { "name", "Rachel" }, { "age", "452" } });
+            myFamily.Add("self", new Dictionary<string, string>() { { "name", "Jim" }, { "age", "214" } });
+            myFamily.Add("dog", new Dictionary<string, string>() { { "name", "Bowie" }, { "age", "6" } });
+
+            //using index on keyValuePair to iterate thru values
+            foreach (var member in myFamily)
+            {
+                Console.WriteLine($" {member.Value["name"]} is my {member.Key} and is {member.Value["age"]} years old.");
+            }
+
+            //same output but with destructuring
+            foreach (var (myFamilyKey, familyMember) in myFamily)
+            {
+                 Console.WriteLine($" {familyMember["name"]} is my {myFamilyKey} and is {familyMember["age"]} years old.");
+            }
+
+            // this didn't work at all
+            //foreach (var (relationshipType, familyMemberInfo) in myFamily)
+            //{
+            //    foreach (KeyValuePair<string, string> kvp in familyMemberInfo)
+            //    {
+            //        if(kvp.Key == "name")
+            //        {
+            //            final = ""
+            //        }
+            //        Console.WriteLine($" {name} is my {relationshipType} and is ___ years old.");
+            //        var value = kvp.Value;
+            //    }
+
+            //}
+
 
         }
-
     }
 }
